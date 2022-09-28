@@ -1,0 +1,13 @@
+version=4
+# GitHub
+opts=uversionmangle=s/(\d)[_\.\-\+]?((rc|pre|dev|beta|alpha|b|a)[\-\.]?\d*)$/$1~$2/i,\
+dversionmangle=s/\+(debian|dfsg|ds|deb)(\.?\d+)?$//i,\
+pgpsigurlmangle=s/$/.asc/ \
+https://github.com/randombit/botan/tags \
+(?:|.*/)v?(\d\S*)@ARCHIVE_EXT@
+
+# Upstream
+opts=dversionmangle=s/\+(debian|dfsg|ds|deb)(\.?\d+)?$//,\
+uversionmangle=s/-?(beta)-?/~$1/;s/-?(alpha)-?/~$1/;s/-?(rc)-?/~rc/;s/\.?(RC)-?/~rc/,\
+pgpsigurlmangle=s/$/.asc/ \
+https://botan.randombit.net/releases/ Botan-(\d\S+)@ARCHIVE_EXT@

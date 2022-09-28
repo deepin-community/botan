@@ -1,0 +1,76 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/architecture.mk
+include /usr/share/dpkg/buildtools.mk
+
+DEVPKG = $(CURDIR)/debian/libbotan-2-dev
+DOCPKG = $(CURDIR)/debian/libbotan-2-doc
+
+ifneq ($(DEB_BUILD_ARCH),$(DEB_HOST_ARCH))
+OS_MAP_hurd = gnu
+OS_MAP_kfreebsd = gnu/kfreebsd
+CROSS_FLAGS += --os=$(or $(OS_MAP_$(DEB_HOST_ARCH_OS)),$(DEB_HOST_ARCH_OS))
+CPU_MAP_aarch64 = arm64
+CPU_MAP_arm = arm32
+CPU_MAP_i686 = x86_32
+CPU_MAP_mips64el = mips64
+CPU_MAP_mips = mips32
+CPU_MAP_mipsel = mips32
+CPU_MAP_powerpc = ppc32
+CPU_MAP_powerp64 = ppc64
+CPU_MAP_powerpc64le = ppc64
+CPU_MAP_sh4 = superh
+ifeq (,$(filter $(DEB_HOST_ARCH),armhf hurd-i386))
+CROSS_FLAGS +=--cpu=$(or $(CPU_MAP_$(DEB_HOST_GNU_CPU)),$(DEB_HOST_GNU_CPU))
+endif
+CROSS_FLAGS += --cc-bin=$(CXX) --ar-command=$(AR)
+endif
+
+override_dh_clean:
+	dh_clean
+	rm -f $(CURDIR)/Certificate\ Store*.db
+
+override_dh_auto_configure:
+	$(CURDIR)/configure.py \
+		$(CROSS_FLAGS) \
+		--prefix=/usr/ \
+		--libdir=/usr/lib/$(DEB_HOST_MULTIARCH) \
+		$(if $(filter $(DEB_HOST_ARCH), armel armhf),--disable-neon) \
+		--with-rst2man \
+		--with-bzip2 \
+		--with-lzma \
+		--with-openssl \
+		--with-sqlite3 \
+		--with-tpm \
+		--with-zlib \
+		--with-python-versions=3 \
+		$(if $(filter $(DEB_HOST_ARCH), armhf),--cpu=armv7) \
+		$(if $(filter $(DEB_HOST_ARCH), hurd-i386),--cpu=x86_32) \
+		--distribution-info=$(shell dpkg-vendor --query Vendor)
+
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	LD_LIBRARY_PATH=. $(CURDIR)/botan-test
+endif
+
+override_dh_install-arch:
+	dh_install -a
+	sed -i -e 's/ -f\(debug\|file\)-prefix-map=[^ ]*=\. / /' $(DEVPKG)/usr/include/botan-2/botan/build.h
+
+override_dh_install-indep:
+	dh_install -i
+	rm -rf $(DOCPKG)/usr/share/doc/libbotan-2-doc/handbook/.doctrees
+
+override_dh_missing:
+	dh_missing --list-missing
+
+%:
+	dh $@ --with python3
+
+.PHONY: override_dh_clean override_dh_auto_configure override_dh_auto_test \
+	override_dh_install-arch override_dh_install-indep \
+	override_dh_missing

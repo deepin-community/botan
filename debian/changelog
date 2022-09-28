@@ -1,0 +1,302 @@
+botan (2.18.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release:
+    - remove support in OpenSSL provider for algorithms which are disabled by
+      default in OpenSSL 3.0 (closes: #995639),
+    - fix some test failures induced by the expiration of the trust root
+      "DST Root CA X3" (closes: #997658).
+  * Update watch file.
+  * Update Standards-Version to 4.6.0 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Mon, 25 Oct 2021 17:05:06 +0200
+
+botan (2.18.1+dfsg-3) unstable; urgency=high
+
+  * Backport security related patches:
+    - new sizes for DL exponents,
+    - CVE-2021-40529: avoid using short exponents with ElGamal
+      (closes: #993840).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 07 Sep 2021 17:38:02 +0200
+
+botan (2.18.1+dfsg-2) unstable; urgency=medium
+
+  * Upload to Sid.
+  * Update watch file.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Mon, 06 Sep 2021 18:02:15 +0200
+
+botan (2.18.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-17 to libbotan-2-18 .
+  * Update debhelper level to 13 .
+  * Update Standards-Version to 4.5.1 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Wed, 18 Aug 2021 18:36:38 +0200
+
+botan (2.17.3+dfsg-3) unstable; urgency=medium
+
+  [ Helmut Grohne <helmut@subdivi.de> ]
+  * Fix FTCBFS (closes: #984700):
+    + Reduce Build-Depends: python3-all-dev to python3:any.
+    + Pass the right flags to ./configure.py.
+    + Honour DEB_BUILD_OPTIONS=nocheck.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 07 Mar 2021 14:32:44 +0100
+
+botan (2.17.3+dfsg-2) unstable; urgency=medium
+
+  * Update watch file.
+
+  [ Helmut Grohne <helmut@subdivi.de> ]
+  * Reduce Build-Depends (closes: #983016):
+    + Move python3-sphinx to B-D-I.
+    + Explicitly B-D: python3-docutils for rst2man no longer implied by
+      python3-sphinx.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 18 Feb 2021 19:22:10 +0100
+
+botan (2.17.3+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 22 Dec 2020 07:15:56 +0100
+
+botan (2.17.2+dfsg-2) unstable; urgency=medium
+
+  * Upload to Sid.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 15 Nov 2020 22:28:51 +0100
+
+botan (2.17.2+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Fri, 13 Nov 2020 16:52:54 +0100
+
+botan (2.17.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Backport upstream build fix to use -mcpu=power9 for DARN instruction on
+    ppc64el.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 10 Nov 2020 16:59:58 +0100
+
+botan (2.17.0+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-16 to libbotan-2-17 .
+  * Update debhelper level to 12 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 05 Nov 2020 17:57:32 +0100
+
+botan (2.16.0+dfsg-2) unstable; urgency=medium
+
+  * Upload to Sid.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 01 Nov 2020 19:20:56 +0100
+
+botan (2.16.0+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-15 to libbotan-2-16 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 06 Oct 2020 18:38:29 +0200
+
+botan (2.15.0+dfsg-2) unstable; urgency=medium
+
+  * Upload to Sid.
+  * Link documentation JavaScript files to their respective ones in
+    node-html5shiv.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Fri, 25 Sep 2020 22:28:59 +0200
+
+botan (2.15.0+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-13 to libbotan-2-15 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 11 Jul 2020 08:37:00 +0200
+
+botan (2.14.0+dfsg-2) unstable; urgency=medium
+
+  * Upload to Sid.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Mon, 27 Apr 2020 16:40:04 +0000
+
+botan (2.14.0+dfsg-1) experimental; urgency=medium
+
+  * Remove unclear licensed PKCS #11 headers (closes: #952951).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 26 Apr 2020 10:21:51 +0000
+
+botan (2.14.0-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 11 Apr 2020 21:22:12 +0000
+
+botan (2.13.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-12 to libbotan-2-13 .
+  * Update Standards-Version to 4.5.0 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 26 Jan 2020 19:02:51 +0000
+
+botan (2.12.1-2) unstable; urgency=medium
+
+  * Upload to Sid.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 26 Dec 2019 20:52:05 +0000
+
+botan (2.12.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Patch package to use Python 3 (closes: #936230).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Mon, 14 Oct 2019 15:20:08 +0000
+
+botan (2.12.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-11 to libbotan-2-12 .
+  * Update Python packaging bits.
+  * Add cryptographic signature verification to watch file.
+  * Update Standards-Version to 4.4.1 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Mon, 07 Oct 2019 15:13:12 +0000
+
+botan (2.11.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-9 to libbotan-2-11 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 16 Jul 2019 13:24:01 +0000
+
+botan (2.9.0-2) unstable; urgency=medium
+
+  * Upload to Sid.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 13 Jan 2019 18:56:06 +0000
+
+botan (2.9.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Fix CVE-2018-20187: address a side channel during ECC key generation,
+    which used an unblinded Montgomery ladder (closes: #918732).
+  * Library transition from libbotan-2-8 to libbotan-2-9 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 12 Jan 2019 13:16:11 +0000
+
+botan (2.8.0-3) unstable; urgency=medium
+
+  * Fix architecture independent build.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 08 Jan 2019 01:07:20 +0000
+
+botan (2.8.0-2) unstable; urgency=medium
+
+  * Upload to Sid.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Mon, 07 Jan 2019 20:01:19 +0000
+
+botan (2.8.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-7 to libbotan-2-8 .
+  * Fix ARM CPU detection (closes: #916970).
+  * Overhaul copyright file (closes: #905335).
+  * Update Standards-Version to 4.3.0 .
+
+  [ Chris Lamb <lamby@debian.org> ]
+  * Make the build reproducible (closes: #909476).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 01 Jan 2019 11:31:02 +0000
+
+botan (2.7.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-5 to libbotan-2-7 .
+  * Update Standards-Version to 4.1.5 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 02 Aug 2018 04:52:07 +0000
+
+botan (2.6.0-3) unstable; urgency=high
+
+  * Backport security related patches:
+    - CVE-2018-12435: memory-cache side-channel attack on ECDSA signatures
+      (closes: #901619),
+    - in ECC avoid using significant words to dispatch the mult algo.
+  * Update Standards-Version to 4.1.4 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 16 Jun 2018 05:58:09 +0000
+
+botan (2.6.0-2) unstable; urgency=medium
+
+  * Upload to Sid.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 29 Apr 2018 13:53:53 +0000
+
+botan (2.6.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Drop merged patches.
+  * Library transition from libbotan-2-4 to libbotan-2-5 .
+  * Add watch file.
+
+  [ Helmut Grohne <helmut@subdivi.de> ]
+  * Use multiarch paths (closes: #895447).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Wed, 11 Apr 2018 18:24:40 +0000
+
+botan (2.4.0-6) unstable; urgency=high
+
+  * Backport CVE-2018-9860 security fix for memory over read in TLS CBC
+    decryption.
+  * Sync with Ubuntu (closes: #895250).
+
+  [ Matthias Klose <doko@ubuntu.com> ]
+  * On armhf, configure with --cpu=armv7. Using the procinfo processor name
+    is plain wrong.
+  * Only pass --disable-neon to the configure when building on armel or armhf.
+  * Don't hard code the vendor information.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 10 Apr 2018 17:55:33 +0000
+
+botan (2.4.0-5) unstable; urgency=high
+
+  * Backport security fix for invalid wildcard match (closes: #894648).
+  * Backport fix for validation tests due to test certs had expired.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Tue, 03 Apr 2018 05:04:53 +0000
+
+botan (2.4.0-4) unstable; urgency=medium
+
+  * Backport upstream fix for disabling NEON (closes: #893372).
+  * Backport upstream fix for Python3 module support (closes: #893730).
+  * Make python3-botan architecture any.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Wed, 28 Mar 2018 16:41:55 +0000
+
+botan (2.4.0-3) unstable; urgency=medium
+
+  * Disable NEON intrinsics for ARM* builds.
+  * Use upstream patch for Hurd FTBFS fix.
+  * Really use the distribution-info switch for configure.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Fri, 16 Mar 2018 06:39:19 +0000
+
+botan (2.4.0-2) unstable; urgency=medium
+
+  * Don't remove .doctrees from the manual if it doesn't exist.
+  * Don't specify parallel to debhelper.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 01 Mar 2018 22:23:25 +0000
+
+botan (2.4.0-1) unstable; urgency=low
+
+  * Initial upload (closes: #884130).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Mon, 08 Jan 2018 20:51:17 +0000

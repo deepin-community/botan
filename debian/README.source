@@ -1,0 +1,2 @@
+Due to unclear OASIS license, PKCS #11 headers are removed with:
+rm -rf src/lib/prov/pkcs11/
