@@ -1,0 +1,22 @@
+From 6ceef8a41465f15e6becfe64560e8527807bb403 Mon Sep 17 00:00:00 2001
+From: xzl <xiangzelong@deepin.org>
+Date: Thu, 29 Aug 2024 14:45:53 +0800
+Subject: [PATCH 1/1] loong64 support
+
+---
+ src/build-data/arch/loongarch64.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 src/build-data/arch/loongarch64.txt
+
+diff --git a/src/build-data/arch/loongarch64.txt b/src/build-data/arch/loongarch64.txt
+new file mode 100644
+index 0000000..e386477
+--- /dev/null
++++ b/src/build-data/arch/loongarch64.txt
+@@ -0,0 +1,3 @@
++family loongarch
++endian little
++wordsize 64
+-- 
+2.43.4
+

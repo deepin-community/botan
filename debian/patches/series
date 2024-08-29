@@ -1,2 +1,3 @@
 readdir_hurd.patch
 use_python3.patch
+0001-loong64-support.patch
