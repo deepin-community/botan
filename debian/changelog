@@ -1,3 +1,9 @@
+botan (2.18.2+dfsg-1deepin1) unstable; urgency=medium
+
+  * Add loong64 support.
+
+ -- xiangzelong <xiangzelong@deepin.org>  Thu, 29 Aug 2024 14:47:35 +0800
+
 botan (2.18.2+dfsg-1) unstable; urgency=medium
 
   * New upstream release:
