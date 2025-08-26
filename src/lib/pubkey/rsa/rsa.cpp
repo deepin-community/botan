@@ -17,10 +17,6 @@
 #include <botan/divide.h>
 #include <botan/internal/monty_exp.h>
 
-#if defined(BOTAN_HAS_OPENSSL)
-  #include <botan/internal/openssl.h>
-#endif
-
 #if defined(BOTAN_HAS_THREAD_UTILS)
   #include <botan/internal/thread_pool.h>
 #endif
@@ -380,6 +376,8 @@ class RSA_Private_Operation
 
       secure_vector<uint8_t> raw_op(const uint8_t input[], size_t input_len)
          {
+         if(input_len > public_modulus_bytes())
+            throw Invalid_Argument("RSA private op - input is too long");
          const BigInt input_bn(input, input_len);
          if(input_bn >= m_public->get_n())
             throw Invalid_Argument("RSA private op - input is too large");
@@ -582,6 +580,8 @@ class RSA_Encryption_Operation final : public PK_Ops::Encryption_with_EME,
       secure_vector<uint8_t> raw_encrypt(const uint8_t input[], size_t input_len,
                                          RandomNumberGenerator&) override
          {
+         if(input_len > public_modulus_bytes())
+            throw Invalid_Argument("RSA encryption - input is too long");
          BigInt input_bn(input, input_len);
          return BigInt::encode_1363(public_op(input_bn), public_modulus_bytes());
          }
@@ -604,6 +604,8 @@ class RSA_Verify_Operation final : public PK_Ops::Verification_with_EMSA,
 
       secure_vector<uint8_t> verify_mr(const uint8_t input[], size_t input_len) override
          {
+         if(input_len > public_modulus_bytes())
+            throw Invalid_Argument("RSA verification - input is too long");
          BigInt input_bn(input, input_len);
          return BigInt::encode_locked(public_op(input_bn));
          }
@@ -627,8 +629,8 @@ class RSA_KEM_Encryption_Operation final : public PK_Ops::KEM_Encryption_with_KD
          const BigInt r = BigInt::random_integer(rng, 1, get_n());
          const BigInt c = public_op(r);
 
-         out_encapsulated_key = BigInt::encode_locked(c);
-         raw_shared_key = BigInt::encode_locked(r);
+         out_encapsulated_key = BigInt::encode_1363(c, public_modulus_bytes());
+         raw_shared_key = BigInt::encode_1363(r, public_modulus_bytes());
          }
    };
 
@@ -639,26 +641,6 @@ RSA_PublicKey::create_encryption_op(RandomNumberGenerator& /*rng*/,
                                     const std::string& params,
                                     const std::string& provider) const
    {
-#if defined(BOTAN_HAS_OPENSSL)
-   if(provider == "openssl" || provider.empty())
-      {
-      try
-         {
-         return make_openssl_rsa_enc_op(*this, params);
-         }
-      catch(Exception& e)
-         {
-         /*
-         * If OpenSSL for some reason could not handle this (eg due to OAEP params),
-         * throw if openssl was specifically requested but otherwise just fall back
-         * to the normal version.
-         */
-         if(provider == "openssl")
-            throw Lookup_Error("OpenSSL RSA provider rejected key:" + std::string(e.what()));
-         }
-      }
-#endif
-
    if(provider == "base" || provider.empty())
       return std::unique_ptr<PK_Ops::Encryption>(new RSA_Encryption_Operation(*this, params));
    throw Provider_Not_Found(algo_name(), provider);
@@ -678,15 +660,6 @@ std::unique_ptr<PK_Ops::Verification>
 RSA_PublicKey::create_verification_op(const std::string& params,
                                       const std::string& provider) const
    {
-#if defined(BOTAN_HAS_OPENSSL)
-   if(provider == "openssl" || provider.empty())
-      {
-      std::unique_ptr<PK_Ops::Verification> res = make_openssl_rsa_ver_op(*this, params);
-      if(res)
-         return res;
-      }
-#endif
-
    if(provider == "base" || provider.empty())
       return std::unique_ptr<PK_Ops::Verification>(new RSA_Verify_Operation(*this, params));
 
@@ -698,21 +671,6 @@ RSA_PrivateKey::create_decryption_op(RandomNumberGenerator& rng,
                                      const std::string& params,
                                      const std::string& provider) const
    {
-#if defined(BOTAN_HAS_OPENSSL)
-   if(provider == "openssl" || provider.empty())
-      {
-      try
-         {
-         return make_openssl_rsa_dec_op(*this, params);
-         }
-      catch(Exception& e)
-         {
-         if(provider == "openssl")
-            throw Lookup_Error("OpenSSL RSA provider rejected key:" + std::string(e.what()));
-         }
-      }
-#endif
-
    if(provider == "base" || provider.empty())
       return std::unique_ptr<PK_Ops::Decryption>(new RSA_Decryption_Operation(*this, params, rng));
 
@@ -735,15 +693,6 @@ RSA_PrivateKey::create_signature_op(RandomNumberGenerator& rng,
                                     const std::string& params,
                                     const std::string& provider) const
    {
-#if defined(BOTAN_HAS_OPENSSL)
-   if(provider == "openssl" || provider.empty())
-      {
-      std::unique_ptr<PK_Ops::Signature> res = make_openssl_rsa_sig_op(*this, params);
-      if(res)
-         return res;
-      }
-#endif
-
    if(provider == "base" || provider.empty())
       return std::unique_ptr<PK_Ops::Signature>(new RSA_Signature_Operation(*this, params, rng));
 

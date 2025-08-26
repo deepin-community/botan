@@ -135,14 +135,6 @@ Last-Update: 2020-01-26
  
  """
  This configures and builds with many different sub-configurations
---- botan-2.13.0.orig/src/scripts/test_cli.py
-+++ botan-2.13.0/src/scripts/test_cli.py
-@@ -1,4 +1,4 @@
--#!/usr/bin/python
-+#!/usr/bin/python3
- 
- """
- (C) 2018,2019 Jack Lloyd
 --- botan-2.13.0.orig/src/scripts/test_cli_crypt.py
 +++ botan-2.13.0/src/scripts/test_cli_crypt.py
 @@ -1,4 +1,4 @@

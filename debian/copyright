@@ -2,10 +2,11 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: botan
 Upstream-Contact: Jack Lloyd <jack@randombit.net>
 Source: https://github.com/randombit/botan
+Files-Excluded: src/lib/prov/pkcs11/*
 
 Files: *
-Copyright: 1999-2019 The Botan Authors,
- 1999-2019 Jack Lloyd <jack@randombit.net>
+Copyright: 1999-2022 The Botan Authors,
+ 1999-2022 Jack Lloyd <jack@randombit.net>
 License: BSD-2-clause
 
 Files: configure.py
@@ -35,11 +36,6 @@ License: BSD-2-clause
 
 Files: src/lib/prov/commoncrypto/*
 Copyright: 2018 Jose Luis Pereira
-License: BSD-2-clause
-
-Files: src/lib/prov/openssl/*
-Copyright: 1999-2010,2015,2016 Jack Lloyd
- 2017 Alexander Bluhm (genua GmbH)
 License: BSD-2-clause
 
 Files: src/lib/pubkey/curve25519/*
@@ -152,7 +148,7 @@ Copyright: 1999-2010,2013,2016,2018 Jack Lloyd,
 License: BSD-2-clause
 
 Files: debian/*
-Copyright: 2017- Laszlo Boszormenyi (GCS) <gcs@debian.org>
+Copyright: 2017-     Laszlo Boszormenyi (GCS) <gcs@debian.org>
 License: BSD-2-clause
 
 License: BSD-2-clause

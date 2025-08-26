@@ -7,34 +7,35 @@ Build-Depends:
  dh-python,
  libbz2-dev,
  liblzma-dev,
- libssl-dev,
  libsqlite3-dev,
  libtspi-dev,
  zlib1g-dev,
  python3:any,
  python3-docutils,
+ ca-certificates,
 Build-Depends-Indep:
  python3-sphinx,
-Standards-Version: 4.6.0
+Rules-Requires-Root: no
+Standards-Version: 4.7.0
 Homepage: https://botan.randombit.net/
 
-Package: botan
-Section: libdevel
-Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: multiplatform crypto library (2.x version)
- Botan is a C++ library which provides support for many common cryptographic
- operations, including encryption, authentication, and X.509v3 certificates and
- CRLs. A wide variety of algorithms is supported, including RSA, DSA, DES, AES,
- MD5, and SHA-1.
- .
- This package contains the 2.x version of Botan.
-
-Package: libbotan-2-18
+#Package: botan
+#Section: libdevel
+#Architecture: any
+#Depends: ${misc:Depends}, ${shlibs:Depends}
+#Description: multiplatform crypto library (2.x version)
+# Botan is a C++ library which provides support for many common cryptographic
+# operations, including encryption, authentication, and X.509v3 certificates and
+# CRLs. A wide variety of algorithms is supported, including RSA, DSA, DES, AES,
+# MD5, and SHA-1.
+# .
+# This package contains the 2.x version of Botan.
+#
+Package: libbotan-2-19
 Section: libs
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}, ca-certificates
 Description: multiplatform crypto library (2.x version)
  Botan is a C++ library which provides support for many common cryptographic
  operations, including encryption, authentication, and X.509v3 certificates and
@@ -46,7 +47,7 @@ Description: multiplatform crypto library (2.x version)
 Package: libbotan-2-dev
 Section: libdevel
 Architecture: any
-Depends: ${misc:Depends}, libbotan-2-18 (= ${binary:Version})
+Depends: ${misc:Depends}, libbotan-2-19 (= ${binary:Version})
 Description: multiplatform crypto library (2.x version)
  Botan is a C++ library which provides support for many common cryptographic
  operations, including encryption, authentication, and X.509v3 certificates and
@@ -67,15 +68,15 @@ Description: multiplatform crypto library (2.x version)
  MD5, and SHA-1.
  .
  This package contains the 2.x version of Botan.
-
-Package: python3-botan
-Section: python
-Architecture: any
-Depends: ${misc:Depends}, ${python3:Depends}, libbotan-2-18 (= ${binary:Version})
-Description: multiplatform crypto library (2.x version), Python3 module
- Botan is a C++ library which provides support for many common cryptographic
- operations, including encryption, authentication, and X.509v3 certificates and
- CRLs. A wide variety of algorithms is supported, including RSA, DSA, DES, AES,
- MD5, and SHA-1.
- .
- This package contains the Botan (2.x version) module for Python 3.x .
+#
+#Package: python3-botan
+#Section: python
+#Architecture: any
+#Depends: ${misc:Depends}, ${python3:Depends}, libbotan-2-19 (= ${binary:Version})
+#Description: multiplatform crypto library (2.x version), Python3 module
+# Botan is a C++ library which provides support for many common cryptographic
+# operations, including encryption, authentication, and X.509v3 certificates and
+# CRLs. A wide variety of algorithms is supported, including RSA, DSA, DES, AES,
+# MD5, and SHA-1.
+# .
+# This package contains the Botan (2.x version) module for Python 3.x .

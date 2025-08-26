@@ -1,6 +1,123 @@
 Release Notes
 ========================================
 
+Version 2.19.5, 2024-07-08
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* A reminder that Botan2 reaches end of life at the end of 2024
+
+* CVE-2024-34702: Fix a DoS caused by excessive name constraints. (GH #4187)
+
+* CVE-2024-39312: Fix a name constraint processing error, where if
+  permitted and excluded rules both applied to a certificate, only the
+  permitted rules would be checked. (GH #4187)
+
+* Fix a crash in OCB (GH #3812 #3924)
+
+* During certificate verification, first verify the entire chain of
+  certificates, then perform other validation. (GH #4052 #4045)
+
+* Fix a test failure in compression with certain versions of zlib (GH #4135 #3896)
+
+* Fix some iterator debugging errors in TLS CBC decryption. (GH #4125 #4130)
+
+* Avoid a miscompilation in ARIA when using XCode 14 (GH #3465 #3492 #4053)
+
+Version 2.19.4, 2024-02-20
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* CVE-2024-34703 Fix a potential denial of service caused by accepting arbitrary
+  length primes as potential elliptic curve parameters in ASN.1
+  encodings. With very large inputs the primality verification
+  can become computationally expensive. Now any prime field larger
+  than 1024 bits is rejected immediately. Reported by Bing Shi.
+  (GH #3914)
+
+* Switch to using a constant time binary algorithm for computing
+  GCD (GH #3912)
+
+* Fix a bug in SHAKE_Cipher which could cause incorrect output
+  if set_key was called multiple times. (GH #3192)
+
+* Fix a bug in RSA-KEM encryption where the shared secret key
+  was incorrectly not padded to exactly the byte length of the
+  modulus. This would cause an incorrect shared key with ~1/256
+  probability. (GH #3380)
+
+* In RSA decryption and signature verification, reject bytestrings
+  which are longer than the public modulus. Previously, otherwise
+  valid signatures/ciphertexts with additional leading zero bytes
+  would also be accepted. (GH #3380)
+
+* Add support for short nonces in XTS (GH #3384 #3336)
+
+* Fix NIST keywrap which was incorrect when wrapping 64-bit keys
+  (GH #3384 #3340)
+
+* Fix nonce handling bug in EAX (GH #3382 #3335)
+
+* Fix a bug in PKCS11 AttributeContainer where adding an attribute
+  that already existed could cause incorrect references to the
+  existing attributes. (GH #3185)
+
+* Apply patches which allow GCC 4.7 to compile Botan 2.x. Previously
+  at least GCC 4.8 had been required. (GH #3273)
+
+* Fix a build time problem affecting VCpkg (GH #3071)
+
+* Fix a build problem affecting Windows ARM with Visual C++ (GH #3871)
+
+Version 2.19.3, 2022-11-16
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* CVE-2022-43705: A malicious OCSP responder could forge OCSP
+  responses due to a failure to validate that an embedded certificate
+  was issued by the end-entity issuing certificate authority.
+
+Version 2.19.2, 2022-06-03
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Add support for parallel computation in Argon2 (GH #2937 #2926)
+
+* Add SSSE3 implementation of Argon2 (GH #2937 #2927)
+
+* The OpenSSL provider was incompatible with OpenSSL 3.0.
+  It has been removed (GH #2902)
+
+* Avoid using reserve in secure_vector appending, which caused
+  a performance problem (GH #2945 #2920)
+
+* Fix TLS::Text_Policy behavior when X25519 is disabled
+  at build time (GH #2894)
+
+* Fix several warnings from Clang (#2888 #2886)
+
+Version 2.19.1, 2022-01-21
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Fix a compilation problem affecting macOS XCode (GH #2880)
+
+* Fix a build problem preventing amalgamation builds in 2.19.0
+  (GH #2879)
+
+Version 2.19.0, 2022-01-19
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Add a forward error correction code compatible with the
+  zfec library (GH #2868 #2866)
+
+* Improve Emscripten build (GH #2864)
+
+* Always use ``-L`` before build flags (GH #2858 2848)
+
+* Fix compilation issue on earlier macOS versions (GH #2851)
+
+* Add a GCC 4.8 CI target to prevent build regressions (GH #2869)
+
+* Add support for Loongarch64 (GH #2877)
+
+* Check OSXSAVE flag before using AVX2 instructions (GH #2878)
+
 Version 2.18.2, 2021-10-25
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

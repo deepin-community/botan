@@ -1,3 +1,7 @@
-usr/share/doc/botan-2.18.1/authors.txt
-usr/share/doc/botan-2.18.1/license.txt
-usr/share/doc/botan-2.18.1/pgpkey.txt
+usr/share/doc/botan-*/authors.txt
+usr/share/doc/botan-*/license.txt
+usr/share/doc/botan-*/pgpkey.txt
+
+usr/bin/botan
+usr/lib/${DEB_HOST_MULTIARCH}/python3/site-packages/botan2.py
+usr/share/man/man1/botan.1

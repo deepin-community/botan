@@ -1,8 +1,81 @@
-botan (2.18.2+dfsg-1deepin1) unstable; urgency=medium
+botan (2.19.5+dfsg-4) unstable; urgency=medium
 
-  * Add loong64 support.
+  * Disable botan and python3-botan binary packages for botan3.
+  * Build and runtime depend on ca-certificates (closes: #1099641).
 
- -- xiangzelong <xiangzelong@deepin.org>  Thu, 29 Aug 2024 14:47:35 +0800
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 22 Mar 2025 17:57:11 +0100
+
+botan (2.19.5+dfsg-3) unstable; urgency=high
+
+  * Backport CVE-2024-50383 security fix for add more value barriers to avoid
+    compiler induced side channels (closes: #1086039).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 26 Oct 2024 19:12:49 +0200
+
+botan (2.19.5+dfsg-2) unstable; urgency=medium
+
+  * Backport upstream fix for removing setuptools dependency
+    (closes: #1080557).
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 07 Sep 2024 07:45:50 +0200
+
+botan (2.19.5+dfsg-1) unstable; urgency=high
+
+  * New upstream release:
+    - fixes CVE-2024-34702: Denial of Service Due to Excessive Name
+      Constraints,
+    - fixes CVE-2024-39312: Authorization Error due to Name Constraint
+      Decoding Bug.
+  * Update Standards-Version to 4.7.0 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Fri, 12 Jul 2024 22:59:28 +0200
+
+botan (2.19.4+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Use no for Rules-Requires-Root.
+  * Update Standards-Version to 4.6.2 .
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 22 Feb 2024 19:16:05 +0100
+
+botan (2.19.3+dfsg-1) unstable; urgency=high
+
+  * New upstream release:
+    - fix  CVE-2022-43705: malicious OCSP responder could forge OCSP
+      responses.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Thu, 17 Nov 2022 21:59:51 +0100
+
+botan (2.19.2+dfsg-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 18 Jun 2022 11:56:15 +0200
+
+botan (2.19.1+dfsg-3) unstable; urgency=medium
+
+  * Sync with Ubuntu.
+
+  [ Michael Hudson-Doyle <michael.hudson@ubuntu.com> ]
+  * d/patches/remove-openssl-provider.patch: Grab patch from upstream that
+    removes the openssl provider, which breaks in obscure ways with OpenSSL 3.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Wed, 18 May 2022 20:06:50 +0200
+
+botan (2.19.1+dfsg-2) unstable; urgency=medium
+
+  * Upload to Sid.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sat, 29 Jan 2022 10:33:09 +0100
+
+botan (2.19.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Library transition from libbotan-2-18 to libbotan-2-19 .
+  * Update copright file (closes: #985748).
+  * Update watch file.
+
+ -- Laszlo Boszormenyi (GCS) <gcs@debian.org>  Sun, 23 Jan 2022 20:17:06 +0100
 
 botan (2.18.2+dfsg-1) unstable; urgency=medium
 
