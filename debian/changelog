@@ -1,3 +1,11 @@
+botan (2.18.2+dfsg-1deepin2) unstable; urgency=medium
+
+  * Fix CVE-2026-32877: SM2 decryption heap over-read by validating C3
+    length. Fix CVE-2026-32884: X.509 name constraint DNS check to
+    canonicalize CN values for case-insensitive matching.
+
+ -- deepin-ci-robot <packages@deepin.org>  Mon, 27 Apr 2026 13:52:32 +0800
+
 botan (2.18.2+dfsg-1deepin1) unstable; urgency=medium
 
   * Add loong64 support.
