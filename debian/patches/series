@@ -1,3 +1,5 @@
 readdir_hurd.patch
 use_python3.patch
 0001-loong64-support.patch
+CVE-2026-32877.patch
+CVE-2026-32884.patch
